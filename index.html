@@ -145,11 +145,11 @@
             display: inline-block;
             background: var(--gold);
             color: var(--navy);
-            padding: 18px 50px;
+            padding: 15px 40px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 800;
-            margin-top: 25px;
+            margin: 10px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -158,3 +158,121 @@
         .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(252, 163, 17, 0.4); }
 
         .btn-outline {
+            background: transparent;
+            color: var(--gold);
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        footer { padding: 40px 20px; text-align: center; font-size: 0.9rem; color: #777; }
+
+        @media (max-width: 850px) {
+            .hero h1 { font-size: 2.5rem; }
+            .founder-box { flex-direction: column; text-align: center; padding: 30px; }
+            .nav-links { display: none; } 
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <div class="logo-group">
+            <a href="#" class="logo">THE CHESS GURUKUL</a>
+            <span class="tagline">Explore the world of 64 squares...</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#why-chess">Why Chess?</a>
+            <a href="#programs">Programs</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>Master the Strategy</h1>
+    <p>Nurturing young minds through structured mental discipline and expert chess mentorship in Pune and Online Worldwide.</p>
+    <a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." class="btn" target="_blank">Book a Demo Session</a>
+</header>
+
+<section id="about">
+    <div class="founder-box">
+        <div class="founder-content">
+            <span class="badge">Founder & Mentor</span>
+            <h2>CA Gaurav Bapat</h2>
+            <p>Combining corporate precision with the strategic depth of a <strong>FIDE-rated player</strong>, Coach Gaurav has established a unique coaching methodology. Known for his soft-spoken, patient, and highly motivational approach, he provides a well-defined curriculum that helps students progress steadily through every level of the game.</p>
+        </div>
+    </div>
+</section>
+
+<section id="why-chess" style="border-top: 1px solid #ddd;">
+    <h2 class="section-title">The Chess Advantage</h2>
+    <div class="why-chess-grid">
+        <div class="benefit-item">
+            <h4>Strategic Thinking</h4>
+            <p>Learning to analyze situations, weigh options, and plan ahead.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Problem Solving</h4>
+            <p>Developing the patience and logic to find the best solution under pressure.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Better Focus</h4>
+            <p>Training the brain to block out distractions and concentrate on the task.</p>
+        </div>
+    </div>
+</section>
+
+<section id="programs" style="background-color: #f1f3f5;">
+    <h2 class="section-title">Our Training Programs</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Online Coaching</h3>
+            <p>Interactive sessions via Zoom for students worldwide.</p>
+        </div>
+        <div class="card">
+            <h3>Offline Sessions</h3>
+            <p>In-person coaching in Pune to build over-the-board skills.</p>
+        </div>
+    </div>
+</section>
+
+<section id="reviews">
+    <h2 class="section-title">Parent Feedback</h2>
+    <div class="grid">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Gaurav Bapat is an exceptional Mentor. Soft-spoken and patient."</p>
+            <span class="author">— Shivani Goyal</span>
+        </div>
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Structured sessions with a well-defined curriculum."</p>
+            <span class="author">— Sameer Patil</span>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="contact-section">
+        <h2>Start Your Strategic Journey</h2>
+        <div style="margin-bottom: 25px;">
+            <p><strong>📍 Training Center:</strong><br>
+            Sai Chauk, Balewadi, Pune, Maharashtra 411045</p>
+        </div>
+        <a class="btn" href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session." target="_blank">WhatsApp Us</a>
+        <a class="btn btn-outline" href="https://share.google/9Pvi62wvRu26lAIy1" target="_blank">Get Directions</a>
+        <a class="btn btn-outline" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">FIDE Profile</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India</p>
+</footer>
+
+</body>
+</html>

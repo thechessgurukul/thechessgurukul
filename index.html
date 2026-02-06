@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chess Gurukul | CA Gaurav Bapat</title>
+    <style>
+        :root {
+            --navy: #14213d; 
+            --gold: #fca311; 
+            --off-white: #f8f9fa; 
+            --text-dark: #212529;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            margin: 0;
+            background-color: var(--off-white);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3.5rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 25px auto; opacity: 0.9; font-weight: 300; }
+
+        /* General Section Styling */
+        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 20px; font-size: 2.4rem; color: var(--navy); }
+        .section-subtitle { text-align: center; margin-bottom: 60px; color: #666; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* Why Chess Section */
+        .why-chess-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .benefit-item { padding: 20px; }
+        .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .benefit-item p { font-size: 0.95rem; color: #555; }
+
+        /* Founder Section */
+        .founder-box {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
+
+        /* Training Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
+        .card h3 { color: var(--navy); margin-top: 0; font-size: 1.5rem; }
+
+        /* Testimonials */
+        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 35px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .stars { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+        .quote { font-style: italic; font-size: 1rem; margin-bottom: 20px; color: #333; }
+        .author { font-weight: 700; color: var(--navy); display: block; }
+
+        /* Contact Section */
+        .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 60px 20px; }
+        .contact-section h2 { color: var(--gold); }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--gold);
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(252, 163, 17, 0.4); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            margin-left: 10px;
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        footer { padding: 40px 20px; text-align: center; font-size: 0.9rem; color: #777; }
+
+        @media (max-width: 850px) {
+            .hero h1 { font-size: 2.5rem; }
+            .founder-box { flex-direction: column; text-align: center; padding: 30px; }
+            .nav-links { display: none; } 
+            .btn-outline { margin-left: 0; margin-top: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="#" class="logo">THE CHESS GURUKUL</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#why-chess">Why Chess?</a>
+            <a href="#programs">Programs</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>Master the Strategy</h1>
+    <p>Nurturing young minds through structured mental discipline and expert chess mentorship in Pune and Online Worldwide.</p>
+    <a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." class="btn" target="_blank">Book a Demo Session</a>
+</header>
+
+<section id="about">
+    <div class="founder-box">
+        <div class="founder-content">
+            <span class="badge">Founder & Mentor</span>
+            <h2>CA Gaurav Bapat</h2>
+            <p>Combining corporate precision with the strategic depth of a <strong>FIDE-rated player</strong>, Coach Gaurav has established a unique coaching methodology. Known for his soft-spoken, patient, and highly motivational approach, he provides a well-defined curriculum that helps students progress steadily through every level of the game.</p>
+            <p>He is personally involved in every student's journey, ensuring that the discipline learned at the chessboard translates into real-world confidence and problem-solving skills.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="why-chess" style="border-top: 1px solid #ddd;">
+    <h2 class="section-title">The Chess Advantage</h2>
+    <p class="section-subtitle">Chess is more than just a game; it is a tool for life. At The Chess Gurukul, we use the board to develop essential cognitive skills.</p>
+    
+    <div class="why-chess-grid">
+        <div class="benefit-item">
+            <h4>Better Focus</h4>
+            <p>Training the brain to block out distractions and concentrate on the task at hand.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Strategic Thinking</h4>
+            <p>Learning to analyze situations, weigh options, and <strong>plan ahead</strong>.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Problem Solving</h4>
+            <p>Developing the patience and logic to find the best solution under pressure.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Resilience</h4>
+            <p>Building the maturity to handle wins with grace and losses with determination.</p>
+        </div>
+    </div>
+</section>
+
+<section id="programs" style="background-color: #f1f3f5;">
+    <h2 class="section-title">Our Training Programs</h2>
+    <div class="grid" style="justify-content: center;">
+        <div class="card">
+            <h3>Online Coaching</h3>
+            <p>Interactive, high-quality sessions via <strong>Zoom</strong>. Perfect for students globally who want personalized attention from the comfort of home.</p>
+        </div>
+        <div class="card">
+            <h3>Offline Sessions</h3>
+            <p>Structured in-person coaching in Pune to build strong over-the-board skills and tournament confidence.</p>
+        </div>
+    </div>
+</section>
+
+<section id="reviews">
+    <h2 class="section-title">Verified Parent Feedback</h2>
+    <div class="grid">
+        <div class="testimonial-card">
+            <div>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions. Gaurav is extremely well-versed in the game and motivates everyone on a regular basis. I highly recommend him."</p>
+            </div>
+            <span class="author">— Shivani Goyal</span>
+        </div>
+        <div class="testimonial-card">
+            <div>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered."</p>
+            </div>
+            <span class="author">— Sameer Patil</span>
+        </div>
+        <div class="testimonial-card">
+            <div>
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
+            </div>
+            <span class="author">— Aparna Choudhari</span>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="contact-section">
+        <h2>Start Your Strategic Journey</h2>
+        <p>Book a demo session with Coach Gaurav and experience the structured learning of The Chess Gurukul.</p>
+        <a class="btn" href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." target="_blank">WhatsApp Us Now</a>
+        <a class="btn btn-outline" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">View FIDE Profile</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2022 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
+</footer>
+
+</body>
+</html>

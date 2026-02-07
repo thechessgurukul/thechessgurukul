@@ -333,6 +333,10 @@
                 <p>Designed for students who already understand the basics and are ready to dive deeper into more complex concepts and tournament-level preparation.</p>
             </div>
         </div>
+        
+        <div style="margin-top: 40px;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfp6_rEaH8C59_U-fO0EAnmR8D4f4mU-EaH8-71e4e4e4e4e4/viewform" class="btn" style="background: var(--navy); color: white; border-color: var(--navy);">Enroll Now</a>
+        </div>
     </div>
 </section>
 
@@ -376,14 +380,12 @@
 </footer>
 
 <script>
-    // TECHNICAL FIX FOR MOBILE MENU
     const menuToggle = document.getElementById('mobile-menu');
     const navList = document.getElementById('nav-list');
     menuToggle.addEventListener('click', () => { 
         navList.classList.toggle('active'); 
     });
     
-    // Close menu when clicking a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => { 
             navList.classList.remove('active'); 

@@ -37,7 +37,7 @@
         /* Navigation */
         nav {
             background: var(--navy);
-            padding: 15px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -53,14 +53,23 @@
         }
         .logo-group {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-logo-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 4px;
+            border: 1.5px solid var(--gold);
+            background: white;
+            object-fit: contain;
         }
         .logo { 
             color: var(--gold); 
             font-weight: 800; 
             font-size: 1.4rem; 
             text-decoration: none; 
-            line-height: 1.2;
+            line-height: 1.1;
         }
         .tagline {
             color: #ffffff;
@@ -175,8 +184,11 @@
 <nav>
     <div class="nav-container">
         <div class="logo-group">
-            <a href="#" class="logo">THE CHESS GURUKUL</a>
-            <span class="tagline">Explore the world of 64 squares...</span>
+            <img src="social-preview.jpg" alt="The Chess Gurukul Logo" class="nav-logo-img">
+            <div style="display: flex; flex-direction: column;">
+                <a href="#" class="logo">THE CHESS GURUKUL</a>
+                <span class="tagline">Explore the world of 64 squares...</span>
+            </div>
         </div>
         <div class="nav-links">
             <a href="#about">About</a>
@@ -288,16 +300,4 @@
         <h2>Start Your Strategic Journey</h2>
         <p>📍 Sai Chauk, Balewadi, Pune, Maharashtra 411045</p>
         <div style="display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;">
-            <a class="btn" href="https://wa.me/919175154913" target="_blank">WhatsApp Us Now</a>
-            <a class="btn" href="https://share.google/9Pvi62wvRu26lAIy1" target="_blank">Get Directions</a>
-            <a class="btn" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">View FIDE Profile</a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2024 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
-</footer>
-
-</body>
-</html>
+            <a class="btn" href="https://wa.me/919175154913" target="_

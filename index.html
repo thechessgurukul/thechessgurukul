@@ -130,11 +130,35 @@
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; width: fit-content; }
         .bio-footer { display: flex; justify-content: flex-end; margin-top: 20px; }
 
-        /* Testimonials */
-        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; }
-        .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
-        .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; text-align: left; }
+        /* Testimonials Update V22 */
+        .testimonial-card { 
+            background: #fffef0; 
+            border: 1px solid var(--gold); 
+            padding: 25px; /* Reduced from 40px to save space */
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        .stars { 
+            color: var(--gold); 
+            margin-bottom: 5px; /* Reduced space between stars and text */
+            font-size: 1.2rem; 
+        }
+        .quote { 
+            font-style: italic; 
+            font-size: 1.05rem; 
+            margin-bottom: 10px; /* Reduced margin to keep button visible */
+            color: #333; 
+            line-height: 1.6; 
+            text-align: left; 
+        }
         .author { font-weight: 700; color: var(--navy); display: block; }
+        
+        .reviews-button-container {
+            text-align: center; 
+            margin-top: 20px; /* Tightened space above Rate Us button */
+        }
 
         /* Contact Section */
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
@@ -297,7 +321,7 @@
             <span class="author">— Aparna Choudhari</span>
         </div>
     </div>
-    <div style="text-align: center; margin-top: 40px;">
+    <div class="reviews-button-container">
         <a class="btn" href="https://g.page/r/CR0MgtQIQ9WdEAE/review" target="_blank">⭐ Rate us on Google</a>
     </div>
 </section>

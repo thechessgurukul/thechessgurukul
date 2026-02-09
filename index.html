@@ -128,9 +128,9 @@
 
         /* Blog/Knowledge Hub Styling */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+        .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; }
         .blog-card:hover { transform: translateY(-5px); }
-        .blog-content { padding: 25px; }
+        .blog-content { padding: 25px; flex-grow: 1; }
         .blog-date { font-size: 0.8rem; color: var(--gold); font-weight: 700; text-transform: uppercase; }
         .blog-content h3 { margin: 10px 0; color: var(--navy); font-size: 1.3rem; }
         .blog-link { color: var(--navy); font-weight: 700; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-top: 15px; border-bottom: 2px solid var(--gold); }
@@ -301,7 +301,7 @@
 
         <article class="blog-card">
             <div class="blog-content">
-                <span class="blog-date">Feb 10, 2026</span>
+                <span class="blog-date">Feb 09, 2026</span>
                 <h3>The Secret Superpowers of Chess: More Than Just a Game!</h3>
                 <p>A Brain Gym that helps children build laser-sharp focus, logical thinking, and emotional resilience for life...</p>
                 <a href="chess-superpowers.html" class="blog-link">Read More</a>
@@ -310,10 +310,10 @@
 
         <article class="blog-card">
             <div class="blog-content">
-                <span class="blog-date">Jan 28, 2026</span>
-                <h3>Pune's Local Chess Tournament Guide</h3>
-                <p>A list of upcoming events in Balewadi and beyond for young aspiring grandmasters looking for match practice...</p>
-                <a href="#contact" class="blog-link">Read More</a>
+                <span class="blog-date">Feb 09, 2026</span>
+                <h3>The Boy Who Became India’s 92nd Grandmaster</h3>
+                <p>The inspiring story of Aaryan Varshney: How big dreams can start at home with just a chessboard and belief...</p>
+                <a href="grandmaster-story.html" class="blog-link">Read More</a>
             </div>
         </article>
     </div>
@@ -334,43 +334,4 @@
         </div>
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
-            <span class="author">— Aparna Choudhari</span>
-        </div>
-    </div>
-    <div class="reviews-button-container">
-        <a class="btn" href="https://g.page/r/CR0MgtQIQ9WdEAE/review" target="_blank">⭐ Rate us on Google</a>
-    </div>
-</section>
-
-<section id="contact">
-    <div class="contact-section">
-        <h2>Start Your Strategic Journey</h2>
-        <p>📍 Sai Chauk, Balewadi, Pune, Maharashtra 411045</p>
-        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-            <a class="btn" href="https://wa.me/919175154913" target="_blank">WhatsApp Us Now</a>
-            <a class="btn" href="https://share.google/9Pvi62wvRu26lAIy1" target="_blank">Get Directions</a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2026 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
-</footer>
-
-<script>
-    const menuToggle = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
-    menuToggle.addEventListener('click', () => { 
-        navList.classList.toggle('active'); 
-    });
-    
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => { 
-            navList.classList.remove('active'); 
-        });
-    });
-</script>
-
-</body>
-</html>
+            <p class="quote">"Gaurav Sir is very keen

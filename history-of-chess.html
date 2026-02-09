@@ -63,18 +63,6 @@
             margin: 40px 0;
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-top: 20px;
-        }
-
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; }
 
         @media (max-width: 600px) {
@@ -118,12 +106,30 @@
             Did you know? The very first chess boards weren't black and white! They were often just one solid color. The "checkered" pattern was added much later to help players see where their pieces could move more easily.
         </div>
 
-        <p style="text-align: center; font-weight: bold; color: var(--navy);">
+        <p style="text-align: center; font-weight: bold; color: var(--navy); margin-bottom: 40px;">
             Question for you: If you could create a new chess piece, what would it be called and how would it move? Tell your coach in your next class!
         </p>
 
-        <div style="text-align: center;">
-            <a href="https://wa.me/919175154913" class="btn">Book a Demo Session</a>
+        <div style="margin-top: 50px; border-top: 2px solid var(--gold); padding-top: 30px; text-align: center;">
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this article? Share it with fellow players!</p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                
+                <a href="#" 
+                   onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;"
+                   style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+                   Share on WhatsApp
+                </a>
+
+                <a href="#" 
+                   onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;"
+                   style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">
+                   Share on LinkedIn
+                </a>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none;">← Back to Knowledge Hub</a>
+            </div>
         </div>
     </div>
 </article>

@@ -187,10 +187,20 @@
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; width: fit-content; }
         .bio-footer { display: flex; justify-content: flex-end; margin-top: 20px; }
         
-        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 25px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .testimonial-card { 
+            background: #fffef0; 
+            border: 1px solid var(--gold); 
+            padding: 25px; 
+            border-radius: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+            flex: 0 0 350px; /* Slider width for reviews */
+            scroll-snap-align: start;
+        }
         .stars { color: var(--gold); margin-bottom: 5px; font-size: 1.2rem; }
         .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 10px; color: #333; line-height: 1.6; text-align: left; }
-        .author { font-weight: 700; color: var(--navy); display: block; }
+        .author { font-weight: 700; color: var(--navy); display: block; border-top: 1px solid rgba(252, 163, 17, 0.1); padding-top: 10px; }
         
         .reviews-button-container { text-align: center; margin-top: 20px; }
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
@@ -216,7 +226,8 @@
             .nav-links.active { display: flex; }
             .nav-links a { margin: 15px 0; font-size: 1.1rem; }
             .section-title { font-size: 1.8rem; }
-            .blog-card { flex: 0 0 85%; } /* Cards take more space on mobile to show scroll intent */
+            .blog-card { flex: 0 0 85%; } 
+            .testimonial-card { flex: 0 0 85%; }
         }
     </style>
 </head>
@@ -372,21 +383,38 @@
 
 <section id="reviews" style="background-color: #fafafa;">
     <h2 class="section-title">What Parents Say...</h2>
-    <div class="grid">
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions. Gaurav is extremely well-versed in the game and motivates everyone on a regular basis. I highly recommend him."</p>
-            <span class="author">— Shivani Goyal</span>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered."</p>
-            <span class="author">— Sameer Patil</span>
-        </div>
-        <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
-            <span class="author">— Aparna Choudhari</span>
+    <div class="slider-container">
+        <div class="blog-slider">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Bapat, founder of 'The Chess Gurukul', is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions. Gaurav is extremely well-versed in the game and motivates everyone on a regular basis. I highly recommend him to anyone looking to enhance their chess skills."</p>
+                <span class="author">— Shivani Goyal</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered. Highly recommended for chess learners and enthusiasts alike."</p>
+                <span class="author">— Sameer Patil</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes from more than a year. We are happy with the result. Sir guides us for tournaments as well. Very well informed. He is very punctual and concerned about kids apart from chess. Highly recommended."</p>
+                <span class="author">— Aparna Choudhari</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Very satisfied with the chess classes. The coach (Gaurav Sir) is patient, explains concepts well, and keeps the sessions interesting. We can see steady progress of our kid."</p>
+                <span class="author">— Rajesh Ladda</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav sir is a very nice teacher. He is very systematic in his teaching plan. He encourages students to take part in online as well as offline chess tournaments. He conducts surprise tests and gives detailed analysis of the result."</p>
+                <span class="author">— Madhura Oak</span>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"Gaurav Sir is an exceptionally honest and dedicated teacher. Children don’t just learn chess here — they learn how to handle pressure, think calmly, and make better decisions. Sir is always open to feedback and transparent with parents. Highly recommended."</p>
+                <span class="author">— Manjay Dasaundhi</span>
+            </div>
         </div>
     </div>
     <div class="reviews-button-container">

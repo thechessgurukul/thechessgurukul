@@ -126,9 +126,46 @@
         .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
         .section-subtitle { text-align: center; margin-bottom: 60px; color: #666; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        /* Blog/Knowledge Hub Styling */
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .blog-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; }
+        /* Blog Knowledge Hub - Slider Styling */
+        .slider-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 10px 5px 30px 5px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
+        
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .slider-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .slider-container::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .blog-slider { 
+            display: flex; 
+            gap: 25px; 
+            scroll-snap-type: x mandatory;
+        }
+
+        .blog-card { 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            transition: 0.3s; 
+            border: 1px solid #eee; 
+            display: flex; 
+            flex-direction: column;
+            flex: 0 0 calc(33.333% - 17px); /* Shows 3 cards on desktop */
+            min-width: 300px;
+            scroll-snap-align: start;
+        }
+
         .blog-card:hover { transform: translateY(-5px); }
         .blog-content { padding: 25px; flex-grow: 1; }
         .blog-date { font-size: 0.8rem; color: var(--gold); font-weight: 700; text-transform: uppercase; }
@@ -179,6 +216,7 @@
             .nav-links.active { display: flex; }
             .nav-links a { margin: 15px 0; font-size: 1.1rem; }
             .section-title { font-size: 1.8rem; }
+            .blog-card { flex: 0 0 85%; } /* Cards take more space on mobile to show scroll intent */
         }
     </style>
 </head>
@@ -291,42 +329,44 @@
     <h2 class="section-title">Chess Knowledge Hub</h2>
     <p class="section-subtitle">Insights, tips, and strategies to help you master the 64 squares.</p>
     
-    <div class="blog-grid">
-        <article class="blog-card">
-            <div class="blog-content">
-                <span class="blog-date">Feb 07, 2026</span>
-                <h3>The Great Journey of Chess: From Ancient India to Your Board!</h3>
-                <p>Discover the magical story of Chaturanga and how the game of kings traveled from ancient India to the whole world...</p>
-                <a href="history-of-chess.html" class="blog-link">Read More</a>
-            </div>
-        </article>
+    <div class="slider-container">
+        <div class="blog-slider">
+            <article class="blog-card">
+                <div class="blog-content">
+                    <span class="blog-date">Feb 07, 2026</span>
+                    <h3>The Great Journey of Chess: From Ancient India to Your Board!</h3>
+                    <p>Discover the magical story of Chaturanga and how the game of kings traveled from ancient India to the whole world...</p>
+                    <a href="history-of-chess.html" class="blog-link">Read More</a>
+                </div>
+            </article>
 
-        <article class="blog-card">
-            <div class="blog-content">
-                <span class="blog-date">Feb 08, 2026</span>
-                <h3>The Secret Superpowers of Chess: More Than Just a Game!</h3>
-                <p>A Brain Gym that helps children build laser-sharp focus, logical thinking, and emotional resilience for life...</p>
-                <a href="chess-superpowers.html" class="blog-link">Read More</a>
-            </div>
-        </article>
+            <article class="blog-card">
+                <div class="blog-content">
+                    <span class="blog-date">Feb 08, 2026</span>
+                    <h3>The Secret Superpowers of Chess: More Than Just a Game!</h3>
+                    <p>A Brain Gym that helps children build laser-sharp focus, logical thinking, and emotional resilience for life...</p>
+                    <a href="chess-superpowers.html" class="blog-link">Read More</a>
+                </div>
+            </article>
 
-        <article class="blog-card">
-            <div class="blog-content">
-                <span class="blog-date">Feb 09, 2026</span>
-                <h3>The Boy Who Became India’s 92nd Grandmaster</h3>
-                <p>The inspiring story of Aaryan Varshney: How big dreams can start at home with just a chessboard and belief...</p>
-                <a href="grandmaster-story.html" class="blog-link">Read More</a>
-            </div>
-        </article>
+            <article class="blog-card">
+                <div class="blog-content">
+                    <span class="blog-date">Feb 09, 2026</span>
+                    <h3>The Boy Who Became India’s 92nd Grandmaster</h3>
+                    <p>The inspiring story of Aaryan Varshney: How big dreams can start at home with just a chessboard and belief...</p>
+                    <a href="grandmaster-story.html" class="blog-link">Read More</a>
+                </div>
+            </article>
 
-        <article class="blog-card">
-            <div class="blog-content">
-                <span class="blog-date">Feb 10, 2026</span>
-                <h3>How to Get Your First FIDE Rating in India: 2026 Roadmap</h3>
-                <p>Ready for the official chess passport? Learn exactly how to get your first FIDE rating in India with our comprehensive guide to 2026's updated rules and regulations.</p>
-                <a href="fide-rating-india-guide-2026.html" class="blog-link">Read More</a>
-            </div>
-        </article>
+            <article class="blog-card">
+                <div class="blog-content">
+                    <span class="blog-date">Feb 10, 2026</span>
+                    <h3>How to Get Your First FIDE Rating in India: 2026 Roadmap</h3>
+                    <p>Ready for the official chess passport? Learn exactly how to get your first FIDE rating in India with our comprehensive guide to 2026's updated rules and regulations.</p>
+                    <a href="fide-rating-india-guide-2026.html" class="blog-link">Read More</a>
+                </div>
+            </article>
+        </div>
     </div>
 </section>
 

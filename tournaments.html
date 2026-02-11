@@ -110,7 +110,7 @@
 
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
-        #loading { text-align: center; padding: 20px; font-weight: bold; }
+        #loading { text-align: center; padding: 20px; font-weight: bold; color: var(--navy); }
         
         footer { margin-top: 50px; padding: 40px 20px; background: var(--navy); color: white; text-align: center; }
         .view-counter { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(252, 163, 17, 0.3); color: var(--gold); }
@@ -155,7 +155,7 @@
         </div>
     </div>
 
-    <div id="loading">Fetching tournament list...</div>
+    <div id="loading">Connecting to Spreadsheet...</div>
     
     <div class="table-responsive">
         <table id="tournament-table" style="display:none;">
@@ -187,29 +187,53 @@
     const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
     let allTournaments = [];
 
+    // Helper to handle various date formats (DD-MM-YYYY or MM/DD/YYYY)
+    function parseSheetDate(dateStr) {
+        if (!dateStr) return new Date(NaN);
+        // Replace dashes with slashes for better cross-browser compatibility
+        const cleanDate = dateStr.trim().replace(/-/g, '/');
+        return new Date(cleanDate);
+    }
+
     function init() {
         Papa.parse(publicSpreadsheetUrl, {
             download: true,
             header: true,
+            skipEmptyLines: true,
             complete: (results) => {
+                console.log("Data loaded:", results.data); // Debug check
                 allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
+                
+                if (allTournaments.length === 0) {
+                    document.getElementById('loading').innerText = "No data found in the spreadsheet.";
+                    return;
+                }
+
                 populateMonthFilter(allTournaments);
                 displayTournaments(allTournaments);
+            },
+            error: (err) => {
+                console.error("PapaParse Error:", err);
+                document.getElementById('loading').innerText = "Error loading spreadsheet. Please check link.";
             }
         });
     }
 
     function populateMonthFilter(data) {
         const monthSelect = document.getElementById('monthFilter');
-        const months = [...new Set(data.map(row => {
-            const d = new Date(row['Date']);
-            return isNaN(d) ? null : d.toLocaleString('default', { month: 'long' });
-        }))].filter(m => m !== null);
+        const monthsFound = new Set();
         
-        const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        months.sort((a, b) => monthOrder.indexOf(a) - monthOrder.indexOf(b));
+        data.forEach(row => {
+            const d = parseSheetDate(row['Date']);
+            if (!isNaN(d)) {
+                monthsFound.add(d.toLocaleString('default', { month: 'long' }));
+            }
+        });
 
-        months.forEach(m => {
+        const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const sortedMonths = Array.from(monthsFound).sort((a, b) => monthOrder.indexOf(a) - monthOrder.indexOf(b));
+
+        sortedMonths.forEach(m => {
             const opt = document.createElement('option');
             opt.value = m;
             opt.textContent = m;
@@ -222,9 +246,10 @@
         const ratingVal = document.getElementById('ratingFilter').value;
 
         const filtered = allTournaments.filter(row => {
-            const d = new Date(row['Date']);
+            const d = parseSheetDate(row['Date']);
             const rowMonth = isNaN(d) ? "" : d.toLocaleString('default', { month: 'long' });
             const rowType = (row['Type'] || "").trim();
+            
             const matchMonth = (monthVal === 'all' || rowMonth === monthVal);
             const matchRating = (ratingVal === 'all' || rowType === ratingVal);
             return matchMonth && matchRating;
@@ -239,4 +264,33 @@
         const loading = document.getElementById('loading');
         tableBody.innerHTML = "";
         
-        if (data.length === 0)
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px;">No tournaments found for this selection.</td></tr>';
+        } else {
+            data.forEach(row => {
+                const dateObj = parseSheetDate(row['Date']);
+                const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight:bold; color:var(--navy);">${dayName}<br>${row['Date']}</td>
+                    <td style="font-weight: 500;">${row['Tournament Name']}</td>
+                    <td>${row['Type']}</td>
+                    <td style="font-size: 0.9rem; color: #555;">${row['Location']}</td>
+                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        loading.style.display = 'none';
+        table.style.display = 'table';
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</body>
+</html>

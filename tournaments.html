@@ -85,7 +85,7 @@
         }
         .filter-group { display: flex; flex-direction: column; gap: 5px; flex-grow: 1; }
         .filter-group label { font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase; }
-        select, input { padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; }
+        select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; cursor: pointer; }
 
         .table-responsive { width: 100%; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; min-width: 850px; }
@@ -94,8 +94,11 @@
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
 
+        #loading { text-align: center; padding: 20px; font-weight: bold; }
+
         @media (max-width: 850px) {
             .filter-group { width: 100%; }
+            .hero h1 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -118,11 +121,7 @@
 <div class="container">
     <div class="filter-section">
         <div class="filter-group">
-            <label>Search Tournament</label>
-            <input type="text" id="searchInput" onkeyup="filterData()" placeholder="Type name or location...">
-        </div>
-        <div class="filter-group">
-            <label>Month</label>
+            <label>Filter by Month</label>
             <select id="monthFilter" onchange="filterData()">
                 <option value="all">All Months</option>
             </select>
@@ -137,7 +136,7 @@
         </div>
     </div>
 
-    <div id="loading">Loading data...</div>
+    <div id="loading">Fetching tournament list...</div>
     
     <div class="table-responsive">
         <table id="tournament-table" style="display:none;">
@@ -164,6 +163,7 @@
             download: true,
             header: true,
             complete: (results) => {
+                // Filter out empty rows and trim values
                 allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
                 populateMonthFilter(allTournaments);
                 displayTournaments(allTournaments);
@@ -178,6 +178,10 @@
             return isNaN(d) ? null : d.toLocaleString('default', { month: 'long' });
         }))].filter(m => m !== null);
         
+        // Simple sort to keep months in calendar order
+        const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        months.sort((a, b) => monthOrder.indexOf(a) - monthOrder.indexOf(b));
+
         months.forEach(m => {
             const opt = document.createElement('option');
             opt.value = m;
@@ -187,22 +191,20 @@
     }
 
     function filterData() {
-        const searchText = document.getElementById('searchInput').value.toLowerCase();
         const monthVal = document.getElementById('monthFilter').value;
         const ratingVal = document.getElementById('ratingFilter').value;
 
         const filtered = allTournaments.filter(row => {
             const d = new Date(row['Date']);
-            const rowMonth = d.toLocaleString('default', { month: 'long' });
+            const rowMonth = isNaN(d) ? "" : d.toLocaleString('default', { month: 'long' });
+            
+            // Matches your sheet's "Rated" or "Unrated" text exactly
             const rowType = (row['Type'] || "").trim();
-            const rowName = (row['Tournament Name'] || "").toLowerCase();
-            const rowLoc = (row['Location'] || "").toLowerCase();
 
-            const matchSearch = rowName.includes(searchText) || rowLoc.includes(searchText);
             const matchMonth = (monthVal === 'all' || rowMonth === monthVal);
             const matchRating = (ratingVal === 'all' || rowType === ratingVal);
 
-            return matchSearch && matchMonth && matchRating;
+            return matchMonth && matchRating;
         });
 
         displayTournaments(filtered);
@@ -214,23 +216,27 @@
         const loading = document.getElementById('loading');
         tableBody.innerHTML = "";
         
-        data.forEach(row => {
-            const dateObj = new Date(row['Date']);
-            const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
-            
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-weight:bold; color:var(--navy); min-width:140px;">
-                    <span style="color:var(--gold); font-size:0.85rem; display:block;">${dayName}</span>
-                    ${row['Date']}
-                </td>
-                <td>${row['Tournament Name']}</td>
-                <td>${row['Type']}</td>
-                <td>${row['Location']}</td>
-                <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
-            `;
-            tableBody.appendChild(tr);
-        });
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px;">No tournaments found for this selection.</td></tr>';
+        } else {
+            data.forEach(row => {
+                const dateObj = new Date(row['Date']);
+                const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-weight:bold; color:var(--navy); min-width:140px;">
+                        <span style="color:var(--gold); font-size:0.85rem; display:block;">${dayName}</span>
+                        ${row['Date']}
+                    </td>
+                    <td>${row['Tournament Name']}</td>
+                    <td>${row['Type']}</td>
+                    <td>${row['Location']}</td>
+                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
 
         loading.style.display = 'none';
         table.style.display = 'table';

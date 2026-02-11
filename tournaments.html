@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNH0MG597R"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -88,25 +89,19 @@
         select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; cursor: pointer; }
 
         .table-responsive { width: 100%; overflow-x: auto; }
-        
-        /* Fixed Column Width Logic */
         table { 
             width: 100%; 
             border-collapse: collapse; 
             min-width: 900px; 
-            table-layout: fixed; /* This prevents columns from jumping */
+            table-layout: fixed; 
         }
-        
         th, td { 
             padding: 15px; 
             border: 1px solid #eee; 
             vertical-align: top; 
-            word-wrap: break-word; /* Ensures text stays inside fixed columns */
+            word-wrap: break-word; 
         }
-
         th { background: var(--off-white); color: var(--navy); text-align: left; border: 1px solid #ddd; }
-        
-        /* Setting Specific Widths */
         .col-date { width: 15%; }
         .col-name { width: 30%; }
         .col-type { width: 12%; }
@@ -116,6 +111,9 @@
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
         #loading { text-align: center; padding: 20px; font-weight: bold; }
+        
+        footer { margin-top: 50px; padding: 40px 20px; background: var(--navy); color: white; text-align: center; }
+        .view-counter { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(252, 163, 17, 0.3); color: var(--gold); }
 
         @media (max-width: 850px) {
             .filter-group { width: 100%; }
@@ -175,6 +173,16 @@
     </div>
 </div>
 
+<footer>
+    <p style="margin-bottom: 15px; font-weight: 600; color: var(--gold);">THE CHESS GURUKUL</p>
+    <div class="view-counter">
+        <span id="busuanzi_container_page_pv">
+            👁️ <span id="busuanzi_value_page_pv">...</span> reads
+        </span>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">© 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
+</footer>
+
 <script>
     const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
     let allTournaments = [];
@@ -231,31 +239,4 @@
         const loading = document.getElementById('loading');
         tableBody.innerHTML = "";
         
-        if (data.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px;">No tournaments found for this selection.</td></tr>';
-        } else {
-            data.forEach(row => {
-                const dateObj = new Date(row['Date']);
-                const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
-                
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight:bold; color:var(--navy);">${dayName}<br>${row['Date']}</td>
-                    <td style="font-weight: 500;">${row['Tournament Name']}</td>
-                    <td>${row['Type']}</td>
-                    <td style="font-size: 0.9rem; color: #555;">${row['Location']}</td>
-                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
-                `;
-                tableBody.appendChild(tr);
-            });
-        }
-
-        loading.style.display = 'none';
-        table.style.display = 'table';
-    }
-
-    window.addEventListener('DOMContentLoaded', init);
-</script>
-
-</body>
-</html>
+        if (data.length === 0)

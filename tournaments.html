@@ -11,7 +11,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pune Tournaments | The Chess Gurukul</title>
+    <title>Tournaments in Pune | The Chess Gurukul</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
     <style>
@@ -21,6 +21,7 @@
             --off-white: #f8f9fa; 
             --text-dark: #212529;
             --white: #ffffff;
+            --link-blue: #0056b3;
         }
 
         * { box-sizing: border-box; }
@@ -32,7 +33,7 @@
             background-color: var(--off-white);
         }
 
-        /* Navigation - Matched to Index.html */
+        /* Navigation - Brand Matched */
         nav {
             background: var(--navy);
             padding: 15px 0;
@@ -69,7 +70,7 @@
         .nav-links a:hover { color: var(--gold); }
         .menu-toggle { display: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-        /* Hero Section - Matched to Index.html */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -79,10 +80,10 @@
             text-align: center;
             border-top: 4px solid var(--gold);
         }
-        .hero h1 { font-size: 2.5rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
+        .hero h1 { font-size: 2.2rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
         .hero p { font-size: 1.1rem; max-width: 700px; margin: 15px auto; opacity: 0.9; font-weight: 300; }
 
-        /* Tournament Table Container */
+        /* Container */
         .container { 
             max-width: 1100px; 
             margin: 40px auto; 
@@ -93,31 +94,24 @@
             border-top: 5px solid var(--gold);
         }
 
-        .section-title { color: var(--navy); text-align: center; margin-bottom: 30px; font-size: 2rem; }
-
-        /* Responsive Table Logic */
+        /* Table Design */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-        table { width: 100%; border-collapse: collapse; min-width: 700px; }
-        th { background: var(--navy); color: var(--gold); padding: 15px; text-align: left; border: 1px solid #ddd; }
-        td { padding: 15px; border: 1px solid #eee; vertical-align: middle; }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th { background: var(--off-white); color: var(--navy); padding: 15px; text-align: left; border: 1px solid #ddd; font-weight: 700; }
+        td { padding: 15px; border: 1px solid #eee; vertical-align: top; font-size: 0.95rem; }
         tr:nth-child(even) { background-color: #fcfcfc; }
         
         .reg-link { 
-            display: inline-block;
-            background: var(--gold); 
-            color: var(--navy); 
-            padding: 8px 15px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: 700; 
-            font-size: 0.85rem;
-            transition: 0.3s;
+            color: var(--link-blue);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: 0.2s;
         }
-        .reg-link:hover { background: var(--navy); color: var(--gold); }
+        .reg-link:hover { color: var(--navy); }
 
         #loading { text-align: center; font-weight: bold; padding: 40px; color: var(--navy); }
 
@@ -155,12 +149,12 @@
 </nav>
 
 <header class="hero">
-    <h1>Upcoming Pune Tournaments</h1>
-    <p>Find the latest FIDE rated and local tournaments happening in Pune.</p>
+    <h1>Upcoming Tournaments in Pune, Maharashtra</h1>
+    <p>Providing a platform for chess enthusiasts to compete and grow.</p>
 </header>
 
 <div class="container">
-    <div id="loading">Gathering tournament data...</div>
+    <div id="loading">Gathering latest tournament data...</div>
     
     <div class="table-responsive">
         <table id="tournament-table" style="display:none;">
@@ -170,7 +164,7 @@
                     <th>Tournament Name</th>
                     <th>Type</th>
                     <th>Location</th>
-                    <th>Action</th>
+                    <th>Register / View further details</th>
                 </tr>
             </thead>
             <tbody id="table-body"></tbody>
@@ -183,12 +177,10 @@
 </footer>
 
 <script>
-    // Menu Toggle Logic
     const menuToggle = document.getElementById('mobile-menu');
     const navList = document.getElementById('nav-list');
     menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
 
-    // Google Sheets Integration
     const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
 
     function init() {
@@ -211,9 +203,9 @@
                 tr.innerHTML = `
                     <td style="font-weight:bold; color:var(--navy);">${row['Date']}</td>
                     <td>${row['Tournament Name']}</td>
-                    <td><span style="background:#eee; padding:3px 8px; border-radius:4px; font-size:0.8rem;">${row['Type']}</span></td>
+                    <td>${row['Type']}</td>
                     <td>${row['Location']}</td>
-                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Info</a></td>
+                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
                 `;
                 tableBody.appendChild(tr);
             }

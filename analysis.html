@@ -4,24 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Game Review | The Chess Gurukul</title>
+    
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
     
     <style>
         :root {
-            --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; --white: #ffffff;
+            --navy: #14213d; 
+            --gold: #fca311; 
+            --off-white: #f8f9fa; 
+            --text-dark: #212529;
+            --white: #ffffff;
         }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--off-white); }
-        nav { background: var(--navy); padding: 15px 0; color: white; position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
         .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
-        .container { max-width: 1100px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .board-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; }
-        .input-section { display: flex; flex-direction: column; gap: 20px; }
-        textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ddd; font-family: monospace; resize: vertical; }
-        .btn-analyze { background: var(--navy); color: white; padding: 15px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .btn-analyze:hover { background: var(--gold); color: var(--navy); }
-        #ai-coach-output { background: #fffef0; border: 1px solid var(--gold); padding: 20px; border-radius: 15px; min-height: 150px; }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } #board { width: 100% !important; max-width: 350px; } }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+
+        /* Main Layout */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .board-section {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h2 { color: var(--navy); margin-top: 0; }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            resize: vertical;
+            font-size: 14px;
+        }
+
+        .btn-analyze {
+            background: var(--navy);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-analyze:hover { 
+            background: var(--gold); 
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* AI Coach Feedback Box */
+        #ai-coach-output {
+            background: #fffef0;
+            border: 1px solid var(--gold);
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 150px;
+            box-shadow: inset 0 0 10px rgba(252, 163, 17, 0.1);
+        }
+
+        .coach-header {
+            color: var(--navy);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+            #board { width: 100% !important; max-width: 350px; }
+        }
     </style>
 </head>
 <body>
@@ -29,7 +133,10 @@
 <nav>
     <div class="nav-container">
         <a href="index.html" class="logo">THE CHESS GURUKUL</a>
-        <div style="font-weight: 600;">V33 Master Edition</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#blog">Blog</a>
+        </div>
     </div>
 </nav>
 
@@ -37,17 +144,20 @@
     <div class="board-section">
         <h2>Live Game Board</h2>
         <div id="board" style="width: 450px"></div>
-        <p style="color: #666; font-size: 0.8rem; margin-top: 10px;">Drag pieces to explore the final position</p>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">Drag pieces to explore positions or check the analysis below.</p>
     </div>
 
     <div class="input-section">
         <h2>AI Game Review</h2>
-        <p>Paste your PGN below to receive coaching from Gemini AI.</p>
-        <textarea id="pgnInput" placeholder="e.g. 1. e4 e5 2. Nf3 Nc6..." rows="8"></textarea>
-        <button class="btn-analyze" onclick="startAnalysis()">Analyze with Gemini</button>
+        <p>Paste your game PGN below. Our Gemini-powered AI will analyze your strategy and give you personalized coaching.</p>
+        
+        <textarea id="pgnInput" placeholder="Paste your PGN here (e.g., 1. e4 e5 2. Nf3...)" rows="8"></textarea>
+        
+        <button class="btn-analyze" onclick="startAnalysis()">Start AI Analysis</button>
+
         <div id="ai-coach-output">
-            <strong>✨ Coach Gemini:</strong>
-            <p id="coach-text">Waiting for your game data...</p>
+            <div class="coach-header">✨ Gemini AI Coach</div>
+            <p id="coach-text">Waiting for your game data... Paste a PGN and click analyze to receive expert insights.</p>
         </div>
     </div>
 </div>
@@ -57,54 +167,70 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 
 <script>
-    // FIXED: Uses CDN for piece images so they work on GitHub
+    // Initializing the board with the Wikipedia piece theme (fixes broken images)
     var board = Chessboard('board', {
         draggable: true,
+        dropOffBoard: 'snapback',
         position: 'start',
         pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png'
     });
+    
     var game = new Chess();
 
+    // The main function called by the button
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
-        const coachBox = document.getElementById('coach-text');
+        const coachText = document.getElementById('coach-text');
 
         if (game.load_pgn(pgn)) {
+            // Update the board to the final position of the PGN
             board.position(game.fen());
-            coachBox.innerHTML = "<em>Analyzing critical turning points...</em>";
+            coachText.innerHTML = "<strong>Coach is thinking...</strong><br>Analyzing your moves for strategic insights.";
             
-            // Calling the Gemini API
-            await fetchGeminiAnalysis(pgn);
+            // Send to Gemini
+            await analyzeWithGemini(pgn);
         } else {
-            alert("Invalid PGN. Please copy a full game log.");
+            alert("Invalid PGN format. Please check your text and try again.");
         }
     }
 
-    async function fetchGeminiAnalysis(pgn) {
-        // STEP: Replace 'YOUR_KEY' with your actual key from Google AI Studio
-        const API_KEY = 'YOUR_GEMINI_API_KEY'; 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+    // The AI Logic
+    async function analyzeWithGemini(pgnData) {
+        const coachText = document.getElementById('coach-text');
         
-        const payload = {
+        // YOUR API KEY INTEGRATED
+        const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
+        const requestBody = {
             contents: [{
                 parts: [{
-                    text: "You are an expert chess coach at The Chess Gurukul. Analyze this PGN. Tell the player one thing they did well and one thing they can improve. Keep it under 4 sentences and very encouraging: " + pgn
+                    text: "You are an encouraging expert chess coach from 'The Chess Gurukul'. Analyze this PGN. Explain the main tactical mistake or a great strategic move in 2-3 simple sentences. Focus on helping the player improve: " + pgnData
                 }]
             }]
         };
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(requestBody)
             });
+
             const data = await response.json();
-            document.getElementById('coach-text').innerText = data.candidates[0].content.parts[0].text;
+            
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                const analysis = data.candidates[0].content.parts[0].text;
+                coachText.innerHTML = `<strong>Coach's Insight:</strong><br>${analysis}`;
+            } else {
+                coachText.innerHTML = "<strong>Note:</strong> I could see the board, but couldn't form a coaching tip. Try a longer PGN.";
+            }
         } catch (error) {
-            document.getElementById('coach-text').innerText = "Coach is offline. Check your API Key.";
+            coachText.innerHTML = "<strong>System Error:</strong> Connection failed. Please check if the API key is active or if the quota has been reached.";
+            console.error("Gemini Error:", error);
         }
     }
 </script>
+
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>V33 Master - AI Chess Analysis</title>
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+</head>
+<body>
+    <h2>Analyze Your Game with Gemini AI</h2>
+    
+    <div id="board" style="width: 400px"></div>
+    
+    <div class="input-section">
+        <textarea id="pgnInput" placeholder="Paste your PGN here..." rows="5" style="width: 400px"></textarea>
+        <button onclick="startAnalysis()">Analyze Game</button>
+    </div>
+
+    <div id="ai-coach-output" style="margin-top: 20px; padding: 15px; background: #f4f4f4; border-radius: 8px;">
+        <strong>Gemini Coach:</strong>
+        <p id="coach-text">Paste a game and click analyze to get strategic insights.</p>
+    </div>
+
+    <script>
+        var board = Chessboard('board', 'start');
+        var game = new Chess();
+
+        function startAnalysis() {
+            const pgn = document.getElementById('pgnInput').value;
+            if (game.load_pgn(pgn)) {
+                board.position(game.fen());
+                document.getElementById('coach-text').innerText = "Analyzing the critical moments... sending to Gemini.";
+                
+                // Here we would call your Gemini API function
+                // analyzeWithGemini(pgn); 
+            } else {
+                alert("Invalid PGN. Please check your text.");
+            }
+        }
+    </script>
+</body>
+</html>

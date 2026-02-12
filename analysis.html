@@ -89,7 +89,6 @@
             border-top: 5px solid var(--gold);
         }
 
-        /* Board Section */
         .board-ui { text-align: center; }
         #move-indicator { color: var(--navy); font-weight: 700; margin-bottom: 10px; }
         .nav-btns { margin-top: 15px; display: flex; gap: 8px; justify-content: center; }
@@ -99,7 +98,6 @@
         }
         .btn-nav:hover { background: var(--gold); color: white; }
 
-        /* Inputs & Buttons */
         .input-group { display: flex; flex-direction: column; gap: 15px; }
         input, textarea { 
             width: 100%; padding: 12px; border-radius: 8px; 
@@ -116,7 +114,6 @@
         .btn-wa { background: #25D366; color: white; display: none; }
         .btn-reset { background: #6c757d; color: white; }
 
-        /* Output Area */
         #ai-coach-output { 
             background: #fffef0; border: 1px solid var(--gold); 
             padding: 25px; border-radius: 12px; margin-top: 20px; min-height: 200px; 
@@ -242,11 +239,12 @@
         document.getElementById('coach-text').style.display = 'none';
 
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
-        // FIXED: Using v1 stable endpoint
-        const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+        
+        // FIXED: Using "gemini-1.5-flash-latest" alias on v1 stable endpoint
+        let API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
         try {
-            const response = await fetch(API_URL, {
+            let response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ 
@@ -258,15 +256,21 @@
                 })
             });
             
-            const data = await response.json();
+            let data = await response.json();
 
-            if (data.error) {
-                console.error("API Error Detail:", data.error);
-                throw new Error(data.error.message);
+            // SECONDARY FALLBACK: Try gemini-2.0-flash if the first fails
+            if (data.error && (data.error.status === "NOT_FOUND" || data.error.message.includes("not found"))) {
+                API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+                response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `Analyze this PGN: ${pgn}` }] }] })
+                });
+                data = await response.json();
             }
 
-            if (!data.candidates || data.candidates.length === 0) {
-                throw new Error("No response from AI. Please try again.");
+            if (data.error) {
+                throw new Error(data.error.message);
             }
 
             lastAnalysis = data.candidates[0].content.parts[0].text;
@@ -275,8 +279,7 @@
             document.getElementById('whatsappBtn').style.display = 'inline-block';
         } catch (e) {
             console.error("Connection Debug:", e);
-            let errorMsg = `<div class="error-box"><strong>Analysis Failed:</strong><br>${e.message}</div>`;
-            document.getElementById('coach-text').innerHTML = errorMsg;
+            document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Analysis Failed:</strong><br>${e.message}</div>`;
         } finally {
             document.getElementById('loader').style.display = 'none';
             document.getElementById('coach-text').style.display = 'block';
@@ -293,11 +296,11 @@
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
         const opt = {
-            margin:       1,
-            filename:     `Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            margin: 1,
+            filename: `Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
         html2pdf().set(opt).from(element).save();
     }

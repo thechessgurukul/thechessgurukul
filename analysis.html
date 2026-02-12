@@ -230,7 +230,6 @@
     function moveBack() { if (currentIndex > -1) { currentIndex--; updateBoardSync(); } }
     function moveNext() { if (currentIndex < moveHistory.length - 1) { currentIndex++; updateBoardSync(); } }
 
-    // V43 MASTER: Auto-Retry Helper
     const delay = ms => new Promise(res => setTimeout(res, ms));
 
     async function startAnalysis() {
@@ -246,10 +245,11 @@
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
         const promptText = `Analyze this Chess PGN: ${pgn}
         Role: Grandmaster Coach from The Chess Gurukul.
-        1. Performance Stats: Estimate ELO and style.
-        2. Mistake Highlighter: Identify 2-3 critical move numbers where advantage shifted. Give Move, Reason, and Best Move.
-        3. Key Lesson: Top conceptual takeaway for ${student}.
-        4. Mission: Next game goal.`;
+        1. **Performance Rating**: Estimate the ELO level shown in this game.
+        2. **Mistake Highlighter**: Identify the 2-3 most critical move numbers where the advantage shifted. Provide Move Number, Mistake, and Best Move suggestion.
+        3. **Key Lesson**: The main conceptual takeaway for ${student}.
+        4. **Mission**: A specific goal for the next game.
+        Be concise, technical, yet encouraging.`;
 
         let attempts = 0;
         const maxAttempts = 3;
@@ -266,12 +266,12 @@
                 let data = await response.json();
 
                 if (data.error) {
-                    if (data.error.status === "RESOURCE_EXHAUSTED") {
+                    if (data.error.status === "RESOURCE_EXHAUSTED" || data.error.message.includes("quota")) {
                         attempts++;
                         if (attempts < maxAttempts) {
-                            document.getElementById('coach-text').innerHTML = `<div class="quota-notice">Coach is busy (Attempt ${attempts}/${maxAttempts})... Retrying in 10 seconds.</div>`;
+                            document.getElementById('coach-text').innerHTML = `<div class="quota-notice">Coach is busy (Attempt ${attempts}/${maxAttempts})... Retrying in 12 seconds.</div>`;
                             document.getElementById('coach-text').style.display = 'block';
-                            await delay(10000); // Wait 10 seconds before retry
+                            await delay(12000);
                             continue;
                         }
                         throw new Error("QUOTA_LIMIT");
@@ -283,12 +283,12 @@
                 document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:1px solid var(--gold); padding-bottom:5px;">Gurukul Analysis for ${student}</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
                 document.getElementById('downloadBtn').style.display = 'inline-block';
                 document.getElementById('whatsappBtn').style.display = 'inline-block';
-                break; // Success!
+                break; 
 
             } catch (e) {
                 console.error("Analysis Error:", e);
                 if (e.message === "QUOTA_LIMIT") {
-                    document.getElementById('coach-text').innerHTML = `<div class="quota-notice"><strong>Still Busy!</strong><br>The Free Tier limit was reached. Please wait 1 minute and try again.</div>`;
+                    document.getElementById('coach-text').innerHTML = `<div class="quota-notice"><strong>Limit Reached</strong><br>The free AI quota is currently full. Please wait 1-2 minutes and try again.</div>`;
                 } else {
                     document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Error:</strong><br>${e.message}</div>`;
                 }

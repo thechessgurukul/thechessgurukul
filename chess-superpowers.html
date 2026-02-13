@@ -39,6 +39,9 @@
     }
     </script>
 
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
+
     <style>
         :root {
             --navy: #14213d; 
@@ -123,11 +126,25 @@
             margin-bottom: 20px;
         }
 
+        /* NEW STYLE: Bottom Like Section */
+        .like-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; }
 
         @media (max-width: 600px) {
             .blog-container { padding: 20px; margin: 10px; }
             h1 { font-size: 1.6rem; }
+            .like-section { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -208,6 +225,16 @@
             Focus • Logic • Memory • Planning • Resilience
         </p>
 
+        <div class="like-section">
+            <span style="font-weight: 700; color: var(--navy);">Hit like if you enjoyed this blog! 👍</span>
+            <div 
+              data-lyket-type="upvote" 
+              data-lyket-id="chess-superpowers-blog" 
+              data-lyket-namespace="the-chess-gurukul"
+              data-lyket-template="twitter"
+            ></div>
+        </div>
+
         <div style="margin-top: 50px; border-top: 2px solid var(--gold); padding-top: 30px; text-align: center;">
             <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this article? Share it with fellow players! 📲</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
@@ -224,8 +251,6 @@
 <footer>
     <p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
 </footer>
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </body>
 </html>

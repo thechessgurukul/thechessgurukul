@@ -72,7 +72,18 @@
 
         .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; }
 
-        .blog-date { display: block; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
+        /* Meta styling for Date and Read Time */
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .blog-date { color: var(--gold); }
+        .read-time { color: #6c757d; }
 
         .read-counter { font-size: 0.85rem; color: #6c757d; margin-bottom: 20px; display: flex; align-items: center; gap: 5px; }
 
@@ -135,7 +146,11 @@
 <article class="blog-container">
     <a href="index.html" class="back-link">← Back to Home</a>
     
-    <span class="blog-date">Feb 10, 2026</span>
+    <div class="blog-meta">
+        <span class="blog-date">Feb 10, 2026</span>
+        <span style="color: #ddd;">|</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
+    </div>
     
     <div class="read-counter">
         <span>👁️</span>

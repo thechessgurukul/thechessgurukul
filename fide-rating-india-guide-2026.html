@@ -10,8 +10,6 @@
     <meta property="og:title" content="How to Get Your First FIDE Rating in India | The Chess Gurukul">
     <meta property="og:description" content="The ultimate 2026 roadmap for parents and players to get an international chess rating in India.">
     <meta property="og:image" content="https://raw.githubusercontent.com/thechessgurukul/thechessgurukul/main/social-preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
 
     <script type="application/ld+json">
     {
@@ -19,28 +17,23 @@
       "@type": "BlogPosting",
       "headline": "How to Get Your First FIDE Chess Rating in India: The Ultimate 2026 Roadmap",
       "description": "The definitive guide for parents and aspiring chess players on AICF registration, FIDE rating rules, and tournament preparation in India for 2026.",
-      "author": {
-        "@type": "Organization",
-        "name": "The Chess Gurukul"
-      },
+      "author": { "@type": "Organization", "name": "The Chess Gurukul" },
       "publisher": {
         "@type": "Organization",
         "name": "The Chess Gurukul",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://your-website.com/logo.png" 
-        }
+        "logo": { "@type": "ImageObject", "url": "https://your-website.com/logo.png" }
       },
       "datePublished": "2026-02-10",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://thechessgurukul.github.io/thechessgurukul/fide-rating-india-guide-2026.html"
-      },
-      "articleSection": "Chess Education"
+      }
     }
     </script>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
+
     <style>
         :root {
             --navy: #14213d; 
@@ -48,8 +41,7 @@
             --off-white: #f8f9fa; 
             --text-dark: #212529;
             --white: #ffffff;
-            --whatsapp-green: #25d366;
-            --linkedin-blue: #0077b5;
+            --heart-red: #ff4b2b;
         }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.8; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
         nav { background: var(--navy); padding: 15px 0; text-align: center; border-bottom: 4px solid var(--gold); }
@@ -57,10 +49,14 @@
         
         .blog-container { max-width: 850px; margin: 40px auto; padding: 40px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
         
-        /* Header Elements */
         .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .blog-date { display: block; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
-        .read-count-top { color: #6c757d; font-size: 0.85rem; font-weight: 600; margin-bottom: 25px; display: block; }
+        
+        /* Meta styling for Date and Read Time */
+        .blog-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
+        .blog-date { color: var(--gold); }
+        .read-time { color: #6c757d; }
+
+        .read-counter { font-size: 0.85rem; color: #6c757d; margin-bottom: 25px; display: flex; align-items: center; gap: 5px; }
         
         h1 { color: var(--navy); font-size: 2.3rem; line-height: 1.2; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
         h2 { color: var(--navy); margin-top: 35px; border-left: 5px solid var(--gold); padding-left: 15px; font-size: 1.6rem; }
@@ -69,18 +65,21 @@
         .fun-fact-grid { display: grid; grid-template-columns: 1fr; background: var(--navy); color: white; padding: 25px; border-radius: 10px; margin: 35px 0; }
         .fun-fact-title { font-weight: bold; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
         
-        /* Social Share Section */
-        .share-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--gold); }
-        .share-title { font-weight: 700; color: var(--navy); margin-bottom: 20px; display: block; }
-        .social-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn-social { text-decoration: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; color: white; transition: 0.3s; }
-        .btn-whatsapp { background: var(--whatsapp-green); }
-        .btn-linkedin { background: var(--linkedin-blue); }
-        .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
+        /* Unified Interaction Box */
+        .interaction-box { background: #ffffff; border: 2px solid #eee; border-radius: 12px; padding: 25px; margin-top: 40px; text-align: center; }
+
+        /* FORCE HEART TO BE RED */
+        [data-lyket-type="like"] svg { fill: var(--heart-red) !important; color: var(--heart-red) !important; }
+        [data-lyket-template="heart"] button { background: transparent !important; border: 2px solid #ff4b2b22 !important; border-radius: 50%; padding: 10px; transition: all 0.3s ease; }
+        [data-lyket-template="heart"] button:hover { background: #ff4b2b11 !important; transform: scale(1.1); }
 
         .note-box { font-size: 0.95em; color: #555; background: #f1f3f5; padding: 15px; border-radius: 8px; margin-top: 10px; border: 1px solid #dee2e6; }
         ul, ol { margin-bottom: 20px; }
         li { margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; border-top: 1px solid #eee; }
+
+        @media (max-width: 600px) { .blog-container { padding: 20px; margin: 10px; } h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
@@ -89,82 +88,92 @@
 
 <article class="blog-container">
     <a href="index.html" class="back-link">← Back to Home</a>
-    <span class="blog-date">FEB 10, 2026</span>
-    <span class="read-count-top">👁️ <span id="busuanzi_value_page_pv"></span> reads</span>
+
+    <div class="blog-meta">
+        <span class="blog-date">Feb 10, 2026</span>
+        <span style="color: #ddd;">|</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
+    </div>
+
+    <div class="read-counter">
+        <span>👁️</span>
+        <span id="busuanzi_container_page_pv" style="display:none;">
+            <span id="busuanzi_value_page_pv"></span> reads
+        </span>
+    </div>
 
     <h1>How to Get Your First FIDE Chess Rating in India: The Ultimate 2026 Roadmap ♟️🇮🇳</h1>
 
-    <p>Becoming a "Rated Player" is one of the most exciting milestones in a young chess player's life. Think of a rating from <strong>FIDE</strong> (the <em>Fédération Internationale des Échecs</em>, or the <strong>International Chess Federation</strong>) as your <strong>official chess passport</strong>—it allows you to compete in professional tournaments anywhere in the world.</p>
+    <div class="content">
+        <p>Becoming a "Rated Player" is one of the most exciting milestones in a young chess player's life. Think of a rating from <strong>FIDE</strong> as your <strong>official chess passport</strong>—it allows you to compete in professional tournaments anywhere in the world.</p>
 
-    <p>In 2026, the process is smoother than ever, but there are technical details parents need to know to avoid confusion and ensure their child is ready for the leap.</p>
+        <p>In 2026, the process is smoother than ever, but there are technical details parents need to know to avoid confusion.</p>
 
-    <h2>Step 1: The AICF Registration (Your National License) 📝</h2>
-    <p>Before you can play in any rated tournament, you must be a member of the <strong>All India Chess Federation (AICF)</strong>.</p>
-    <ul>
-        <li><strong>How to Register:</strong> New players must visit the official <a href="https://prs.aicf.in/new-register" target="_blank">AICF PRS New Registration Page</a>.</li>
-        <li><strong>The Cost:</strong> For the 2025-2026 season, the annual fee is <strong>₹300</strong>.</li>
-        <li><strong>Renewal:</strong> Membership follows the financial year (April to March). Ensure you renew every April to keep your account active!</li>
-    </ul>
+        <h2>Step 1: The AICF Registration (Your National License) 📝</h2>
+        <ul>
+            <li><strong>How to Register:</strong> New players must visit the official <a href="https://prs.aicf.in/new-register" target="_blank">AICF PRS New Registration Page</a>.</li>
+            <li><strong>The Cost:</strong> For the 2025-2026 season, the annual fee is <strong>₹300</strong>.</li>
+            <li><strong>Renewal:</strong> Membership follows the financial year (April to March). Ensure you renew every April!</li>
+        </ul>
 
-    <h2>Step 2: Understanding the "Three Flavors" of Ratings ⏱️</h2>
-    <p>One of the most important things for parents to understand is that FIDE maintains <strong>three separate rating lists</strong>. A player does not just have one single rating; they can earn a specific rating for <strong>Standard (Classical)</strong>, <strong>Rapid</strong>, and <strong>Blitz</strong> chess.</p>
-    <p>Standard ratings are considered the "Gold Standard" for serious improvement and earning titles like Grandmaster. Rapid ratings are very common in India due to the popularity of "One-Day" Sunday tournaments, while Blitz ratings track a player's performance in lightning-fast games. It is important to note that getting a rating in one category does not automatically give you a rating in the others. You must meet the qualification criteria separately for each of these three formats.</p>
+        <h2>Step 2: Understanding the "Three Flavors" of Ratings ⏱️</h2>
+        <p>FIDE maintains <strong>three separate rating lists</strong>: <strong>Standard (Classical)</strong>, <strong>Rapid</strong>, and <strong>Blitz</strong>. Standard ratings are the "Gold Standard" for titles like Grandmaster. You must meet the qualification criteria separately for each format.</p>
 
-    <h2>Step 3: Finding the Right Tournament 🏆</h2>
-    <p>Look for authorized events on the <a href="https://aicf.in/all-events/" target="_blank">AICF All-Events Calendar</a>.</p>
-    <ul>
-        <li><strong>The 2026 "Fast Classic" Rule:</strong> FIDE now allows major tournaments to use a 45+30 (45 minutes plus 30 seconds per move) time control for Standard ratings. This allows 9-round events to finish in <strong>5 days</strong>, making it much more affordable for families traveling from other cities.</li>
-    </ul>
+        <h2>Step 3: Finding the Right Tournament 🏆</h2>
+        <p>Look for events on the <a href="https://aicf.in/all-events/" target="_blank">AICF All-Events Calendar</a>. In 2026, the "Fast Classic" rule (45+30) allows 9-round events to finish in just 5 days.</p>
 
-    <div class="pro-tip">
-        <strong>💎 Pro Tip for Parents:</strong> Before jumping into an official FIDE-rated event, have your child play local "practice" or unrated club tournaments. Use these as a barometer. Once you see they are able to compete with and <strong>beat FIDE-rated players consistently</strong> in these local games, you’ll know they are ready to handle the pressure and technical requirements of an international rating tournament.
-    </div>
-
-    <h2>Step 4: The 5-Game Rule 🔢</h2>
-    <p>There is often confusion about how many games are needed. To get your first rating in any category, you must meet these specific criteria:</p>
-    <ol>
-        <li><strong>Play 5 games</strong> against players who already have a FIDE rating in that specific category. (Note: You can "pool" these games from different tournaments over a 26-month period).</li>
-        <li><strong>Score at least 0.5 points</strong> (one draw or win) against those rated players.</li>
-        <li><strong>Achieve a Performance of 1400+:</strong> Since 2024, the "Rating Floor" is 1400. If your calculated performance is 1350, you stay "Unrated" until you cross the 1400 mark.</li>
-    </ol>
-    <div class="note-box">
-        <em>Note: While you only play 5 real games, FIDE’s internal math now includes two "imaginary" draws against 1800-rated opponents. This ensures your initial rating is stable and accurately reflects your skill level from day one.</em>
-    </div>
-
-    <h2>Step 5: Tournament Survival Guide 🥤</h2>
-    <p>Classical games can last 4 hours, and Rapid tournaments often involve 9 games in a single day. Preparation is key:</p>
-    <ul>
-        <li><strong>The "Chess Diet":</strong> Pack fruit, nuts, and plenty of water. Avoid heavy or oily meals between rounds as they can cause energy crashes.</li>
-        <li><strong>The "Cool Down":</strong> After a game, give the child 10 minutes of "quiet time" or a short walk before discussing the moves. The brain needs to reset for the next round.</li>
-    </ul>
-
-    <p>The journey to becoming a rated chess player is as much about character building as it is about strategy. It teaches patience, resilience, and the value of hard work. As your child embarks on this path, remember that the rating is just a reflection of their current progress—the real victory lies in the love for the game and the discipline they develop along the way.</p>
-
-    <div class="fun-fact-grid">
-        <div class="fun-fact-title">💡 Fun Fact</div>
-        <div>
-            India is currently a global chess powerhouse. As of February 2026, there are over <strong>35,000 FIDE-rated players in India</strong>, making it one of the largest and most vibrant chess communities in the world!
+        <div class="pro-tip">
+            <strong>💎 Pro Tip for Parents:</strong> Before jumping into an official FIDE-rated event, have your child play local club tournaments. Once they <strong>beat FIDE-rated players consistently</strong> locally, they are ready for the international stage.
         </div>
-    </div>
 
-    <p style="font-size: 0.85em; color: #777; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-        <strong>Sources & Verification:</strong> This guide is based on current FIDE Rating Regulations (effective 2026 updates) and official procedures published by the All India Chess Federation (AICF).
-    </p>
-
-    <div class="share-section">
-        <span class="share-title">Inspired by this guide? Share it with a friend! 📱</span>
-        <div class="social-buttons">
-            <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-whatsapp">Share on WhatsApp</a>
-            <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-linkedin">Share on LinkedIn</a>
+        <h2>Step 4: The 5-Game Rule 🔢</h2>
+        <ol>
+            <li><strong>Play 5 games</strong> against rated players in that specific category over a 26-month period.</li>
+            <li><strong>Score at least 0.5 points</strong> (one draw or win).</li>
+            <li><strong>Achieve a Performance of 1400+:</strong> The rating floor is currently 1400.</li>
+        </ol>
+        <div class="note-box">
+            <em>Note: FIDE’s math now includes two "imaginary" draws against 1800-rated opponents to stabilize your initial rating.</em>
         </div>
-    </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="index.html#blog" class="back-link">← Back to Knowledge Hub</a>
+        <h2>Step 5: Tournament Survival Guide 🥤</h2>
+        <ul>
+            <li><strong>The "Chess Diet":</strong> Pack fruit, nuts, and water. Avoid oily meals.</li>
+            <li><strong>The "Cool Down":</strong> Give the child 10 minutes of quiet time before discussing moves.</li>
+        </ul>
+
+        <div class="fun-fact-grid">
+            <div class="fun-fact-title">💡 Fun Fact</div>
+            <div>
+                India is a global chess powerhouse. As of February 2026, there are over <strong>35,000 FIDE-rated players in India</strong>!
+            </div>
+        </div>
+
+        <div class="interaction-box">
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Found this roadmap helpful? Give it a heart and share it! ❤️</p>
+            
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px;">
+                <div 
+                  data-lyket-type="like" 
+                  data-lyket-id="fide-guide-2026-v50-master" 
+                  data-lyket-namespace="the-chess-gurukul-master"
+                  data-lyket-template="heart"
+                ></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on WhatsApp</a>
+                <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
+            </div>
+        </div>
     </div>
 </article>
 
-<footer style="text-align: center; padding: 40px; color: #777; font-size: 0.9rem;">
+<footer>
     <p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
 </footer>
 

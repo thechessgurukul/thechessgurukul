@@ -10,8 +10,6 @@
     <meta property="og:title" content="The Secret Superpowers of Chess | Knowledge Hub">
     <meta property="og:description" content="Discover how chess builds focus, logic, and resilience in children through scientifically-backed cognitive training.">
     <meta property="og:image" content="https://raw.githubusercontent.com/thechessgurukul/thechessgurukul/main/social-preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
 
     <script type="application/ld+json">
     {
@@ -19,17 +17,11 @@
       "@type": "BlogPosting",
       "headline": "The Secret Superpowers of Chess: More Than Just a Game!",
       "description": "Discover how chess builds focus, logic, and resilience in children through scientifically-backed cognitive training.",
-      "author": {
-        "@type": "Organization",
-        "name": "The Chess Gurukul"
-      },
+      "author": { "@type": "Organization", "name": "The Chess Gurukul" },
       "publisher": {
         "@type": "Organization",
         "name": "The Chess Gurukul",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://your-website.com/logo.png"
-        }
+        "logo": { "@type": "ImageObject", "url": "https://your-website.com/logo.png" }
       },
       "datePublished": "2026-02-10",
       "mainEntityOfPage": {
@@ -49,6 +41,7 @@
             --off-white: #f8f9fa; 
             --text-dark: #212529;
             --white: #ffffff;
+            --heart-red: #ff4b2b;
         }
 
         body {
@@ -66,12 +59,7 @@
             border-bottom: 4px solid var(--gold);
         }
 
-        .logo { 
-            color: var(--gold); 
-            font-weight: 800; 
-            font-size: 1.4rem; 
-            text-decoration: none; 
-        }
+        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
 
         .blog-container {
             max-width: 800px;
@@ -82,31 +70,11 @@
             box-shadow: 0 5px 25px rgba(0,0,0,0.05);
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: var(--navy);
-            text-decoration: none;
-            font-weight: bold;
-        }
+        .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; }
 
-        .blog-date {
-            display: block;
-            color: var(--gold);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
+        .blog-date { display: block; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
 
-        .read-counter {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+        .read-counter { font-size: 0.85rem; color: #6c757d; margin-bottom: 20px; display: flex; align-items: center; gap: 5px; }
 
         h1 { color: var(--navy); font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
         h3 { color: var(--navy); margin-top: 30px; border-left: 4px solid var(--gold); padding-left: 15px; }
@@ -119,24 +87,27 @@
             margin: 40px 0;
         }
 
-        .superpower-box {
-            background: #f1f5f9;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+        .superpower-box { background: #f1f5f9; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+
+        .interaction-box {
+            background: #ffffff;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
-        /* NEW STYLE: Bottom Like Section */
-        .like-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 40px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            border: 1px solid #e9ecef;
+        /* Styling to force Red Heart and make it look like a button */
+        [data-lyket-template="heart"] button {
+            color: var(--heart-red) !important;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+        
+        [data-lyket-template="heart"] button:hover {
+            transform: scale(1.2);
         }
 
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; }
@@ -144,7 +115,6 @@
         @media (max-width: 600px) {
             .blog-container { padding: 20px; margin: 10px; }
             h1 { font-size: 1.6rem; }
-            .like-section { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -225,24 +195,25 @@
             Focus • Logic • Memory • Planning • Resilience
         </p>
 
-        <div class="like-section">
-            <span style="font-weight: 700; color: var(--navy);">Hit like if you enjoyed this blog! ❤️</span>
-            <div 
-              data-lyket-type="like" 
-              data-lyket-id="chess-superpowers-v33" 
-              data-lyket-namespace="the-chess-gurukul-master"
-              data-lyket-template="heart"
-            ></div>
-        </div>
+        <div class="interaction-box">
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this article? Give it a heart and share with friends! ❤️</p>
+            
+            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px;">
+                <div 
+                  data-lyket-type="like" 
+                  data-lyket-id="chess-superpowers-v33-red-master" 
+                  data-lyket-namespace="the-chess-gurukul-master"
+                  data-lyket-template="heart"
+                ></div>
+            </div>
 
-        <div style="margin-top: 50px; border-top: 2px solid var(--gold); padding-top: 30px; text-align: center;">
-            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this article? Share it with fellow players! 📲</p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">Share on WhatsApp</a>
+                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on WhatsApp</a>
                 <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
             </div>
-            <div style="margin-top: 30px;">
-                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none;">← Back to Knowledge Hub</a>
+
+            <div style="margin-top: 25px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
             </div>
         </div>
     </div>

@@ -58,7 +58,7 @@
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.8;
+            line-height: 1.6;
             color: var(--text-dark);
             margin: 0;
             background-color: var(--off-white);
@@ -129,9 +129,10 @@
             padding: 15px; 
             border: 1px solid #eee; 
             vertical-align: top; 
-            word-wrap: break-word; 
+            word-wrap: break-word;
+            font-size: 0.95rem; /* Unified font size */
         }
-        th { background: var(--off-white); color: var(--navy); text-align: left; border: 1px solid #ddd; }
+        th { background: var(--off-white); color: var(--navy); text-align: left; border: 1px solid #ddd; font-weight: 700; }
         .col-date { width: 15%; }
         .col-name { width: 30%; }
         .col-type { width: 12%; }
@@ -300,9 +301,9 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td style="font-weight:bold; color:var(--navy);">${dayName}<br>${row['Date']}</td>
-                    <td style="font-weight: 500;">${row['Tournament Name']}</td>
+                    <td style="font-weight: 600; color: var(--text-dark);">${row['Tournament Name']}</td>
                     <td>${row['Type']}</td>
-                    <td style="font-size: 0.9rem; color: #555;">${row['Location']}</td>
+                    <td style="color: #444;">${row['Location']}</td>
                     <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
                 `;
                 tableBody.appendChild(tr);
